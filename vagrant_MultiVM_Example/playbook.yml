@@ -1,0 +1,22 @@
+---
+- name: provision Vagrant VM
+  hosts: all
+  become: true
+
+  tasks:
+    - name: create .ssh if it does exist
+      ansible.builtin.file:
+        path: /home/vagrant/.ssh
+        state: directory
+        mode: '0700'
+        owner: vagrant
+        group: vagrant
+    
+    - name: Copy in authorized keys file
+      ansible.builtin.copy:
+        src: authorized_keys
+        dest: /home/vagrant/.ssh/authorized_keys
+        mode: '0600'
+        owner: vagrant
+        group: vagrant
+        backup: true
