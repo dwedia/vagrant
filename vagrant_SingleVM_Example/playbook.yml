@@ -11,11 +11,13 @@
         mode: '0700'
         owner: vagrant
         group: vagrant
-    
-    - name: Copy in authorized keys file
-      ansible.builtin.copy:
-        src: authorized_keys
-        dest: /home/vagrant/.ssh/authorized_keys
+
+    - name: add vagrant publickey in autorized_keys file
+      ansible.builtin.lineinfile:
+        path: /home/vagrant/.ssh/authorized_keys
+        line: "{{ lookup('file', 'vagrantKey.pub') }}"
+        state: present
+        create: true
         mode: '0600'
         owner: vagrant
         group: vagrant
