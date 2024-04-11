@@ -41,8 +41,7 @@
         state: present
       with_items:
         - vim
-        - tldr
-        - htop
         - tree
         - git
       when: ansible_facts['os_family'] == "RedHat"
+
