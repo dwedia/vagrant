@@ -1,18 +1,19 @@
 Vagrant.configure("2") do |config|
-   config.vm.box = "almalinux/9"
-   config.vm.define "Alma9" do |alma9|
+   config.vm.box = "baunegaard/win10pro-en"
+   config.vm.box_version = "1.4.0"
+   config.vm.define "win10" do |win10|
      #..
-     alma9.vm.hostname = "Alma9"
-     alma9.vm.network "private_network", ip: "192.168.56.10"
-     alma9.vm.provider "virtualbox" do |alma9vb|
-      alma9vb.name = "alma9"
-      alma9vb.memory = "2048"
-      alma9vb.cpus = "2"
+     win10.vm.hostname = "win10"
+     win10.vm.network "private_network", ip: "192.168.56.10"
+     win10.vm.provider "virtualbox" do |win10vb|
+      win10vb.name = "Win10vm"
+      win10vb.memory = "4096"
+      win10vb.cpus = "2"
       config.disksize.size = "50GB"
      end
    end
    config.vagrant.plugins = "vagrant-disksize"
-   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "playbook.yml"
-   end
+#   config.vm.provision "ansible" do |ansible|
+#    ansible.playbook = "playbook.yml"
+#   end
  end
