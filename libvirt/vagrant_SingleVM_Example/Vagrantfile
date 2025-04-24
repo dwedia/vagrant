@@ -1,4 +1,5 @@
 Vagrant.configure("2") do |config|
+<<<<<<< HEAD
   config.vm.box = "almalinux/9"
 
   config.vm.define "Alma9" do |alma9|
@@ -27,4 +28,30 @@ Vagrant.configure("2") do |config|
       ansible.playbook = "playbook.yml"
     end
   end
+=======
+
+  config.vm.box = "almalinux/9"
+  config.vm.hostname = "alma9"
+
+  config.vm.define "alma9" do |vm|
+    vm.vm.provider :libvirt do |libvirt|
+      libvirt.cpus = 4
+      libvirt.memory = 1024
+      libvirt.nested = false
+      libvirt.machine_virtual_size = 40
+    end
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    dnf install -y cloud-utils-growpart
+    growpart /dev/vda 4
+    xfs_growfs /dev/vda4
+  SHELL
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
+  end
+
+
+>>>>>>> 5d8ee0f (working singlevm example)
 end
