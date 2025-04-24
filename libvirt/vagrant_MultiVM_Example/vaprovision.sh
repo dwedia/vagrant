@@ -1,0 +1,1 @@
+VAGRANT_NO_PARALLEL=true vagrant provision

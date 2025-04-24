@@ -1,3 +1,5 @@
+ENV['VAGRANT_NO_PARALLEL'] = 'true'
+
 Vagrant.configure("2") do |config|
    config.vm.box = "dwedia/almalinux9"
    
