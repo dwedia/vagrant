@@ -1,34 +1,4 @@
 Vagrant.configure("2") do |config|
-<<<<<<< HEAD
-  config.vm.box = "almalinux/9"
-
-  config.vm.define "Alma9" do |alma9|
-    #..
-    alma9.vm.hostname = "Alma9"
-#    alma9.vm.network "private_network",
-#      ip: "10.0.0.254",
-#      netmask: "255.255.252.0",
-#      libvirt__network_name: "alma9",
-#      libvirt__dhcp_enabled: false
-
-    alma9.vm.provider "libvirt" do |alma9lv|
-      alma9lv.cpu_mode = "host-passthrough"
-      alma9lv.memory = "2048"
-      alma9lv.cpus = "2"
-      alma9lv.machine_virtual_size = 40
-    end
-
-    alma9.vm.provision "shell", inline: <<-SHELL
-      dnf install -y cloud-utils-growpart
-      growpart /dev/vda 4
-      xfs_growfs /dev/vda4
-    SHELL
-
-    alma9.vm.provision "ansible" do |ansible|
-      ansible.playbook = "playbook.yml"
-    end
-  end
-=======
 
   config.vm.box = "almalinux/9"
   config.vm.hostname = "alma9"
@@ -52,6 +22,4 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "playbook.yml"
   end
 
-
->>>>>>> 5d8ee0f (working singlevm example)
 end
